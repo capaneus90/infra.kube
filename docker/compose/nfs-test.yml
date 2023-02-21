@@ -1,0 +1,20 @@
+version: "3.2"
+
+services:
+  rsyslog:
+    image: jumanjiman/rsyslog
+    ports:
+      - "514:514"
+      - "514:514/udp"
+    volumes:
+      - type: volume
+        source: volume_name
+        target: /nfs
+        volume:
+          nocopy: true
+volumes:
+  volume_name:
+    driver_opts:
+      type: "nfs"
+      o: "addr=10.0.0.50,nolock,soft,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14"
+      device: ":/docker"
