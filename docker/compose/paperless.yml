@@ -93,7 +93,28 @@ services:
       PAPERLESS_OCR_LANGUAGE: eng
 
 volumes:
+# FOR NFS OPTIONS subtree_check,insecure,no_root_squash 
   data:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=10.0.0.50,nolock,soft,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14"
+      device: ":/export/docker/paperless/paperless_data"
   media:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=10.0.0.50,nolock,soft,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14"
+      device: ":/export/docker/paperless/paperless_media"
   pgdata:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=10.0.0.50,nolock,soft,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14"
+      device: ":/export/docker/paperless/paperless_pgdata"
   redisdata:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=10.0.0.50,nolock,soft,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14"
+      device: ":/export/docker/paperless/paperless_redisdata"
